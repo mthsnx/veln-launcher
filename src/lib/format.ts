@@ -6,7 +6,7 @@ export function signedUsd(n: number) {
     maximumFractionDigits: 2,
   });
   if (n > 0) return `+$${abs}`;
-  if (n < 0) return `-${abs}`;
+  if (n < 0) return `-$${abs}`;
   return `$${abs}`;
 }
 

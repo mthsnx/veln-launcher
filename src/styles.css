@@ -1,0 +1,79 @@
+@import "./fonts.css";
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Outfit", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+
+  --color-bg: #09090b;
+  --color-bg-elev: #0c0c0e;
+  --color-surface: #111113;
+  --color-surface-2: #18181b;
+  --color-surface-3: #27272a;
+  --color-line: #27272a;
+  --color-line-strong: #3f3f46;
+  --color-fg: #fafafa;
+  --color-muted: #a1a1aa;
+  --color-faint: #71717a;
+  --color-gold: #fafafa;
+  --color-gold-2: #e4e4e7;
+  --color-gold-dim: #27272a;
+  --color-ink: #09090b;
+  --color-loss: #ff5c5c;
+  --color-loss-dim: #1a0c0c;
+  --color-gain: #3dcc84;
+  --color-gain-dim: #0c1a12;
+  --color-overlay: rgb(0 0 0 / 0.78);
+}
+
+@layer base {
+  html {
+    color-scheme: dark;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  body {
+    margin: 0;
+    background: var(--color-bg);
+    color: var(--color-fg);
+    font-family: var(--font-sans);
+    min-height: 100vh;
+  }
+  h1, h2, h3 { text-wrap: balance; letter-spacing: -0.03em; }
+  p { text-wrap: pretty; }
+  button:not(:disabled),
+  [role="button"]:not(:disabled) { cursor: pointer; }
+  :focus-visible {
+    outline: 2px solid var(--color-gold);
+    outline-offset: 2px;
+  }
+  input:focus-visible,
+  textarea:focus-visible,
+  select:focus-visible { outline: none; }
+  ::selection { background: var(--color-gold); color: var(--color-ink); }
+  * { scrollbar-width: thin; scrollbar-color: #463c30 transparent; }
+  input[type="number"]::-webkit-outer-spin-button,
+  input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+  input[type="number"] { appearance: textfield; }
+}
+
+@keyframes page-in {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.page-in { animation: page-in 240ms ease-out; }
+
+@keyframes ticker {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.ticker-track { animation: ticker 48s linear infinite; }
+.ticker:hover .ticker-track { animation-play-state: paused; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
